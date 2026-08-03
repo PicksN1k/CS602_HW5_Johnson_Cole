@@ -4,7 +4,6 @@ import * as clientModule from './clientCourseModule.js'
 
 let result;
 
-
 console.log("\nQuery random course");
 result = await clientModule.getRandomCourse();
 console.log(JSON.stringify(result, null, 2));
@@ -21,7 +20,7 @@ console.log("\nQuery courses by id - with Coordinator and associated courses");
 result = await clientModule.lookupByCourseId_V2("CS 6.2");
 console.log(JSON.stringify(result, null, 2));
 
-console.log("\nQuery courses by name ");
+console.log("\nQuery courses by name");
 result = await clientModule.lookupByCourseName("^database");
 console.log(JSON.stringify(result, null, 2));
 
@@ -29,29 +28,26 @@ console.log("\nQuery coordinator by id - with associated courses");
 result = await clientModule.lookupByCoordinator("kalathur");
 console.log(JSON.stringify(result, null, 2));
 
-clientModule.client.clearStore();
+//
+// Additional Test Cases
+//
 
-// Additional Test - Course Description
 console.log("\nAdditional Query course description");
-result = await clientModule.getCourseDescription("688");
+result = await clientModule.getCourseDescription("632");
 console.log(JSON.stringify(result, null, 2));
 
-// Additional Test - CourseId V1
 console.log("\nAdditional Query courses by id - Basic Info");
 result = await clientModule.lookupByCourseId_V1("CS 7");
 console.log(JSON.stringify(result, null, 2));
 
-// Additional Test - CourseId V2
 console.log("\nAdditional Query courses by id - with Coordinator");
 result = await clientModule.lookupByCourseId_V2("CS 7");
 console.log(JSON.stringify(result, null, 2));
 
-// Additional Test - CourseName
 console.log("\nAdditional Query courses by name");
 result = await clientModule.lookupByCourseName("^software");
 console.log(JSON.stringify(result, null, 2));
 
-// Additional Test - Coordinator
 console.log("\nAdditional Query coordinator");
 result = await clientModule.lookupByCoordinator("kanabar");
 console.log(JSON.stringify(result, null, 2));
