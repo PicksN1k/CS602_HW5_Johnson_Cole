@@ -73,7 +73,53 @@ export default function Courses({ courseList, refreshById, refreshByName,
 
       <h3>Course Lookup Results</h3>
 
-      Code goes here
+      <table className="table table-striped">
+  <thead>
+    <tr>
+      <th>Course Id</th>
+      <th>Course Name</th>
+      <th>Coordinator</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    {courseList &&
+      courseList.map(course => (
+        <tr key={course._id}>
+
+          <td>
+            <a
+              href="/"
+              onClick={(e) => handleCourseClick(e, course._id)}
+            >
+              {course._id}
+            </a>
+          </td>
+
+          <td>{course.courseName}</td>
+
+          <td>
+
+            {course.coordinator &&
+              <a
+                href="/"
+                onClick={(e) =>
+                  handleCoordinatorClick(e, course.coordinator._id)
+                }
+              >
+                {course.coordinator.lastName}
+              </a>
+            }
+
+          </td>
+
+        </tr>
+      ))}
+
+  </tbody>
+
+</table>
 
 
     </div>
