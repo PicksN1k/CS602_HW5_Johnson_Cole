@@ -1,20 +1,16 @@
-iimport { createHttpLink, ApolloClient, InMemoryCache, gql } 
- from "@apollo/client/core/index.js";
-
+import { ApolloClient, InMemoryCache, gql } 
+   from '@apollo/client';
+   
 const baseServerURL = "http://localhost:4000";
 
-const httpLink = createHttpLink({
- uri: baseServerURL,
-});
-
 export const client = new ApolloClient({
- link: httpLink,
- cache: new InMemoryCache(),
- defaultOptions: {
-   query: {
-   fetchPolicy: 'network-only',
+  uri: `${baseServerURL}`,
+  cache: new InMemoryCache(),
+  defaultOptions: {
+    query: {
+      fetchPolicy: 'network-only',
+    }
   }
- }
 });
 
 
@@ -92,8 +88,8 @@ export const lookupByCourseId_V1 =  async (id) => {
 export const lookupByCourseId_V2 = async (id) => {
   console.log("\nLookup by CourseId (V2):", id);
 
-  const QUERY_GET_BY_COURSE_ID_V2 =
-    `query Course($courseIdLookupId: String!) {
+  const QUERY_GET_BY_COURSE_ID_V2 = `
+    query Course($courseIdLookupId: String!) {
       courseIdLookup(id: $courseIdLookupId) {
         _id
         courseName
@@ -108,7 +104,7 @@ export const lookupByCourseId_V2 = async (id) => {
         }
       }
     }
-    `;
+  `;
 
   const result = await client.query({
     query: gql(QUERY_GET_BY_COURSE_ID_V2),
@@ -121,8 +117,8 @@ export const lookupByCourseId_V2 = async (id) => {
 export const lookupByCourseName = async (name) => {
   console.log("\nLookup by CourseName:", name);
 
-  const QUERY_GET_BY_COURSE_NAME =
-    `query CourseName($courseNameLookupName: String!) {
+  const QUERY_GET_BY_COURSE_NAME = `
+    query CourseName($courseNameLookupName: String!) {
       courseNameLookup(name: $courseNameLookupName) {
         _id
         courseName
@@ -133,7 +129,7 @@ export const lookupByCourseName = async (name) => {
         }
       }
     }
-    `;
+  `;
 
   const result = await client.query({
     query: gql(QUERY_GET_BY_COURSE_NAME),
@@ -146,8 +142,8 @@ export const lookupByCourseName = async (name) => {
 export const lookupByCoordinator = async (id) => {
   console.log("\nLookup by Coordinator:", id);
 
-  const QUERY_GET_COORDINATOR =
-    `query Coordinator($coordinatorId: String!) {
+  const QUERY_GET_COORDINATOR = `
+    query Coordinator($coordinatorId: String!) {
       coordinator(id: $coordinatorId) {
         _id
         firstName
@@ -158,7 +154,7 @@ export const lookupByCoordinator = async (id) => {
         }
       }
     }
-    `;
+  `;
 
   const result = await client.query({
     query: gql(QUERY_GET_COORDINATOR),
