@@ -74,7 +74,7 @@ function App() {
 
  return (
     <div className="container">
-       <center><h2>CS602 Assignment5 - Suresh Kalathur</h2></center>
+       <center><h2>CS602 Assignment5 - Cole Johnson</h2></center>
       
       <div className="row">
         
