@@ -89,30 +89,81 @@ export const lookupByCourseId_V1 =  async (id) => {
 	return result.data;
 };
 
-export const lookupByCourseId_V2 =  async (id) => {
-	console.log("\nLookup by CourseId (V2):", id);
+export const lookupByCourseId_V2 = async (id) => {
+  console.log("\nLookup by CourseId (V2):", id);
 
-	// fill in the code
+  const QUERY_GET_BY_COURSE_ID_V2 =
+    `query Course($courseIdLookupId: String!) {
+      courseIdLookup(id: $courseIdLookupId) {
+        _id
+        courseName
+        coordinator {
+          _id
+          firstName
+          lastName
+          courses {
+            _id
+            courseName
+          }
+        }
+      }
+    }
+    `;
 
+  const result = await client.query({
+    query: gql(QUERY_GET_BY_COURSE_ID_V2),
+    variables: { courseIdLookupId: id }
+  });
 
-}
+  return result.data;
+};
 
 export const lookupByCourseName = async (name) => {
   console.log("\nLookup by CourseName:", name);
-  
-	// fill in the code
 
+  const QUERY_GET_BY_COURSE_NAME =
+    `query CourseName($courseNameLookupName: String!) {
+      courseNameLookup(name: $courseNameLookupName) {
+        _id
+        courseName
+        coordinator {
+          _id
+          firstName
+          lastName
+        }
+      }
+    }
+    `;
 
+  const result = await client.query({
+    query: gql(QUERY_GET_BY_COURSE_NAME),
+    variables: { courseNameLookupName: name }
+  });
+
+  return result.data;
 };
 
-export const lookupByCoordinator =  async (id) => {
-	console.log("\nLookup by Coordinator:", id);
-	
-		// fill in the code
+export const lookupByCoordinator = async (id) => {
+  console.log("\nLookup by Coordinator:", id);
 
-	
+  const QUERY_GET_COORDINATOR =
+    `query Coordinator($coordinatorId: String!) {
+      coordinator(id: $coordinatorId) {
+        _id
+        firstName
+        lastName
+        courses {
+          _id
+          courseName
+        }
+      }
+    }
+    `;
+
+  const result = await client.query({
+    query: gql(QUERY_GET_COORDINATOR),
+    variables: { coordinatorId: id }
+  });
+
+  return result.data;
 };
-
-
-
-
