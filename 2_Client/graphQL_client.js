@@ -30,3 +30,28 @@ result = await clientModule.lookupByCoordinator("kalathur");
 console.log(JSON.stringify(result, null, 2));
 
 clientModule.client.clearStore();
+
+// Additional Test - Course Description
+console.log("\nAdditional Query course description");
+result = await clientModule.getCourseDescription("688");
+console.log(JSON.stringify(result, null, 2));
+
+// Additional Test - CourseId V1
+console.log("\nAdditional Query courses by id - Basic Info");
+result = await clientModule.lookupByCourseId_V1("CS 7");
+console.log(JSON.stringify(result, null, 2));
+
+// Additional Test - CourseId V2
+console.log("\nAdditional Query courses by id - with Coordinator");
+result = await clientModule.lookupByCourseId_V2("CS 7");
+console.log(JSON.stringify(result, null, 2));
+
+// Additional Test - CourseName
+console.log("\nAdditional Query courses by name");
+result = await clientModule.lookupByCourseName("^software");
+console.log(JSON.stringify(result, null, 2));
+
+// Additional Test - Coordinator
+console.log("\nAdditional Query coordinator");
+result = await clientModule.lookupByCoordinator("kanabar");
+console.log(JSON.stringify(result, null, 2));
